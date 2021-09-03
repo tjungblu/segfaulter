@@ -6,9 +6,7 @@ WORKDIR /app
 COPY ./Cargo.toml /app/
 COPY ./src/ /app/src/
 
-RUN --mount=type=cache,target=/usr/local/cargo/registry \
-    --mount=type=cache,target=/app/target \
-  cargo build --release && \
+RUN cargo build --release && \
   mv ./target/release/segfaulter /usr/local/bin
 
 FROM alpine:3.14
